@@ -12,7 +12,7 @@ class QuotesController < ApplicationController
 
   def create
     @quote = Quote.create!(quote_params)
-    json_response(@quote)
+    json_response(@quote, :created)
   end
 
   def update
@@ -30,10 +30,6 @@ class QuotesController < ApplicationController
   end
 
   private
-  def json_response(object)
-    render json: object, status: :ok
-  end
-
   def quote_params
     params.permit(:author, :content)
   end
